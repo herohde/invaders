@@ -1,0 +1,12 @@
+*~
+.DS_Store
+
+# Folders
+.idea
+node_modules
+bower_components
+
+# Grunt-generated files
+scripts
+source/**/*.js
+source/**/*.js.map
