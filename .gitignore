@@ -1,8 +1,12 @@
 *~
 .DS_Store
+source/.baseDir.ts
+source/.baseDir.js
+source/.baseDir.js.map
 
 # Folders
 .idea
+.tscache
 node_modules
 bower_components
 
