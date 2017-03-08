@@ -17,10 +17,8 @@ export class Player extends Phaser.Sprite {
         this.animations.add('idle');
         this.animations.play('idle', 2, true);
 
-        // Smaller bounding box. Makes collisions tighter.
-        this.body.height = 20;
-        this.body.width = 20;
-
+        // Smaller bounding box.
+        this.body.setSize(16, 12, 8, 10); // bounding box
         this.scale.x = 2;
         this.scale.y = 2;
 

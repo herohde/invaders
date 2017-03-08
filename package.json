@@ -11,18 +11,24 @@
     "url": "git+https://github.com/herohde/invaders.git"
   },
   "author": "",
-  "license": "ISC",
+  "license": "",
   "bugs": {
     "url": "https://github.com/herohde/invaders/issues"
   },
   "homepage": "https://github.com/herohde/invaders#readme",
   "devDependencies": {
+    "@types/node": "^7.0.5",
+    "@types/request": "0.0.40",
     "babelify": "^7.3.0",
     "grunt": "^1.0.1",
     "grunt-browserify": "^5.0.0",
     "grunt-contrib-connect": "^1.0.2",
     "grunt-contrib-watch": "^1.0.0",
-    "grunt-typescript": "^0.8.0",
-    "main-bower-files": "^2.13.1"
+    "grunt-ts": "^6.0.0-beta.14",
+    "http": "0.0.0",
+    "main-bower-files": "^2.13.1",
+    "request": "^2.80.0",
+    "typescript": "^2.2.1",
+    "web-request": "^1.0.7"
   }
 }

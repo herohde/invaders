@@ -1,14 +1,15 @@
 module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        typescript: {
-            base: {
+        ts: {
+            dev: {
                 src: ['source/**/*.ts'],
                 dest: 'source',
                 options: {
                     module: 'commonjs',
-                    target: 'es5',
+                    target: 'es6',
                     sourceMap: true,
+                    moduleResolution: "node"
                 }
             }
         },
@@ -26,7 +27,7 @@ module.exports = function(grunt) {
         watch: {
             code: {
                 files: ['source/**/*.ts'],
-                tasks: ['typescript', 'browserify'],
+                tasks: ['ts:dev', 'browserify'],
             },
         },
         connect: {
@@ -50,7 +51,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-browserify');
     grunt.loadNpmTasks('main-bower-files');
-    grunt.loadNpmTasks('grunt-typescript');
+    grunt.loadNpmTasks('grunt-ts');
 
-    grunt.registerTask('default', ['bower', 'connect', 'typescript', 'browserify', 'watch']);
+    grunt.registerTask('default', ['bower', 'connect', 'ts:dev', 'browserify', 'watch']);
+    grunt.registerTask('compile', ['bower', 'connect', 'ts:dev', 'browserify']);
 };

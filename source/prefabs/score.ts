@@ -22,6 +22,10 @@ export class Score extends Phaser.Group {
         this._set(0);
     }
 
+    get() : number {
+        return this.score;
+    }
+
     private _set(score: number) {
         this.score = score;
         this.txt.setText(this.score.toString());

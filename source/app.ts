@@ -1,5 +1,7 @@
 /// <reference path="../bower_components/phaser/typescript/phaser.comments.d.ts" />
 
+'use strict';
+
 import {Boot} from "./states/boot";
 import {Preload} from "./states/preload";
 import {Game} from "./states/game";
