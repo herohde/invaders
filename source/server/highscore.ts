@@ -1,18 +1,14 @@
-/*
-import request = require("request");
-import RequestCallback = request.RequestCallback;
-import RequestResponse = request.RequestResponse;
-*/
-
 import * as WebRequest from 'web-request';
 
 // Highscore contains methods to access a server-side highscore list.
 export namespace Highscore {
+    // Entry is a highscore entry
     export interface Entry {
         name: string
         score: number
     }
 
+    // Table represents the highscore table.
     export interface Table {
         list: Array<Entry>
     }
@@ -38,18 +34,4 @@ export namespace Highscore {
             return false;
         }
     }
-
-    /*
-    export function top(): Array<Entry> {
-        request.get("http://localhost:9001/invaders/highscore", (error: any, response: RequestResponse, body: any) => {
-            console.log(error);
-            console.log(body);
-        });
-        return []
-    }
-
-    export function submit(entry: Entry) {
-        request.post("http://localhost:9001/invaders/highscore", { body: entry, json: true });
-    }
-    */
 }

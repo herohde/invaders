@@ -36,7 +36,7 @@ export class Player extends Phaser.Sprite {
     }
 
     update() {
-        const speed = 200;
+        const speed = 300;
 
         if (this.cursors.left.isDown) {
             this.body.velocity.x = -speed;
@@ -70,7 +70,7 @@ export class Player extends Phaser.Sprite {
             bullet.outOfBoundsKill = true;
             bullet.checkWorldBounds = true;
 
-            bullet.body.velocity.y = -400;
+            bullet.body.velocity.y = -600;
         }
     }
 

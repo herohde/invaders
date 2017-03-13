@@ -38,9 +38,22 @@ export class Game extends Phaser.State {
     update() {
         this.moveUfos();
 
+        if (this.ufos.getFirstAlive() == null) {
+            let score = this.score.get();
+            (async () => {
+                await Highscore.submit({name: "William", score: score});
+                this.game.state.start('end');
+            })();
+        }
+
         this.physics.arcade.overlap(this.player, this.ufos, (p : Phaser.Sprite, c : Phaser.Sprite) => {
             c.destroy();
-            this.game.state.start('end');
+
+            let score = this.score.get();
+            (async () => {
+                await Highscore.submit({name: "William", score: score});
+                this.game.state.start('end');
+            })();
         }, null, this);
 
         this.physics.arcade.overlap(this.bullets, this.ufos, (b : Phaser.Sprite, c : Ufo) => {
@@ -49,14 +62,7 @@ export class Game extends Phaser.State {
             if (c.destroy()) {
                 b.kill();
 
-                this.score.inc(20);
-                let score = this.score.get();
-
-                (async () => {
-                    await Highscore.submit({name: "William", score: score});
-                    let top = await Highscore.top();
-                    console.log(top);
-                })();
+                this.score.inc(2);
             }
         }, null, this);
     }
@@ -81,9 +87,15 @@ export class Game extends Phaser.State {
         }, this);
 
         if (minX < 5) {
+            this.ufos.forEachAlive((ufo : Ufo) => {
+                ufo.y += 10;
+            }, this);
             this.ufos.setAll('body.velocity.x', this.speed);
         }
         if (maxX > this.game.width - 80) {
+            this.ufos.forEachAlive((ufo : Ufo) => {
+                ufo.y += 10;
+            }, this);
             this.ufos.setAll('body.velocity.x', -this.speed);
         }
     }
