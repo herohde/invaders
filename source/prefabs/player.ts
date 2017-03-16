@@ -2,7 +2,7 @@
 /*
  * Invaders player
  *
- * Human-controlled cat. Uses arrows and space bar.
+ * Human-controlled spaceship. Uses arrows and space bar.
  */
 export class Player extends Phaser.Sprite {
     constructor(game: Phaser.Game, x :number, y:number, public bullets : Phaser.Group) {
@@ -74,7 +74,7 @@ export class Player extends Phaser.Sprite {
         }
     }
 
-    private fireguard: number;
+    private fireguard: number = 0;
     private cursors: Phaser.CursorKeys;
     private spacebar: Phaser.Key;
 }

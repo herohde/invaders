@@ -54,5 +54,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-ts');
 
     grunt.registerTask('default', ['bower', 'connect', 'ts:dev', 'browserify', 'watch']);
-    grunt.registerTask('compile', ['bower', 'connect', 'ts:dev', 'browserify']);
+    grunt.registerTask('compile', ['bower', 'ts:dev', 'browserify']);
 };

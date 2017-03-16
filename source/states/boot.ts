@@ -6,7 +6,7 @@
 export class Boot extends Phaser.State {
     preload() {
         this.load.image('preloader', 'assets/images/loading_bar.png');
-        this.load.image('splash', 'assets/images/background.png');
+        this.load.image('splash', 'assets/images/rohdekill.png');
     }
 
     create() {

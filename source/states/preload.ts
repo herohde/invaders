@@ -4,11 +4,19 @@
  * Load all assets while displaying a status bar/splash.
  */
 export class Preload extends Phaser.State {
-    bar: Phaser.Sprite;
-
     preload() {
-        this.add.sprite(0, 0, 'splash');
-        this.bar = this.add.sprite(this.game.width/2, this.game.height/2, 'preloader');
+        this.bg = this.add.sprite(0, 0, 'splash');
+        this.bg.width = this.game.width;
+        this.bg.height = this.game.height;
+
+        let text = this.game.add.text(this.game.width/2, this.game.height/2, "invaders", {font: "80px Arial", fill: "#ffffff", align: "center"});
+        text.anchor.setTo(0.5, 0.5);
+
+        let style = {font: "36px Arial", fill: "#ffffff", align: "center"};
+        let credit = this.game.add.text(this.game.width, this.game.height, "2017 (c) William ", style);
+        credit.anchor.setTo(1, 1);
+
+        this.bar = this.add.sprite(this.game.width/2, this.game.height*3/4, 'preloader');
         this.bar.anchor.setTo(0.5, 0.5);
         this.load.setPreloadSprite(this.bar, 0);
 
@@ -27,9 +35,19 @@ export class Preload extends Phaser.State {
     }
 
     create() {
-        var tween = this.add.tween(this.bar).to({ alpha: 0 }, 500, Phaser.Easing.Linear.None, true);
+        let tween = this.add.tween(this.bar).to({ alpha: 0 }, 1000, Phaser.Easing.Linear.None, true);
         tween.onComplete.add(() => {
+            let style = {font: "36px Arial", fill: "#ff0000", align: "center"};
+            let click = this.game.add.text(this.game.width/2, this.game.height*3/4, "- click to start -", style);
+            click.anchor.setTo(0.5, 0.5);
+        }, this);
+
+        this.bg.inputEnabled = true;
+        this.bg.events.onInputDown.add(() => {
             this.game.state.start('game');
         }, this);
     }
+
+    bar: Phaser.Sprite;
+    bg: Phaser.Sprite;
 }
