@@ -1,21 +1,22 @@
 
 /*
- * Enemy UFO.
+ * Enemy Mothership.
  *
- * Descends slowly on the player. Mechanical, like the original.
+ * Descends aggressively on the player.
  */
-export class Ufo extends Phaser.Sprite {
+export class Mothership extends Phaser.Sprite {
     constructor(game: Phaser.Game, x: number, y: number) {
-        super(game, x, y, "ufo");
+        super(game, x, y, "mothership");
 
         game.add.existing(this);
         game.physics.enable(this, Phaser.Physics.ARCADE);
 
-        this.body.setSize(20, 12, 9, 10); // bounding box
+        this.body.setSize(50, 20, 0, 10); // bounding box
         this.scale.x = 2;
         this.scale.y = 2;
-    }
 
+        this.health = 3;
+    }
 
     // TODO(herohde) 3/18/2017: use different sprite instead? Not
     // sure what the canonical solution is. Disable body?
@@ -24,6 +25,11 @@ export class Ufo extends Phaser.Sprite {
         if (this.dying) {
             return false; // already dead
         }
+        this.health--;
+        if (this.health > 0) {
+            return true;
+        }
+
         this.dying = true;
 
         this.body.velocity.y = -20;

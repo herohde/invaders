@@ -1,4 +1,7 @@
 import {Highscore} from "../server/highscore";
+import {Image} from "../util/image"
+import {Counter} from "../util/counter";
+import {Session} from "../session";
 
 /*
  * End state
@@ -6,13 +9,16 @@ import {Highscore} from "../server/highscore";
  * Game over.
  */
 export class End extends Phaser.State {
-    create() {
-        let bg = this.add.sprite(0, 0, 'splash');
-        bg.width = this.game.width;
-        bg.height = this.game.height;
+    constructor(private session: Session) {
+        super();
+    }
 
+    create() {
+        let bg = Image.fill(this.game, 'background');
         bg.inputEnabled = true;
         bg.events.onInputDown.add(() => {
+            this.session.score.reset();
+            this.session.level = 1;
             this.game.state.start('game');
         }, this);
 
@@ -24,16 +30,20 @@ export class End extends Phaser.State {
             let x = text.x - text.width/4;
             let y = text.y + text.height/2 + 20;
 
+            let score = this.session.score;
+            await Highscore.submit({name: score.name, score: score.value});
             let list = await Highscore.top();
-            let i = 1;
-            for (let elm of list) {
-                const style = { font: "20px Arial", fill: "#ff0000" };
-                let line = this.game.add.text(x, y, "[" + i + "]", style);
-                this.game.add.text(x + 40, y, elm.name, style);
-                this.game.add.text(x + 300, y, elm.score + " pts", style);
+            if (list) {
+                let i = 1;
+                for (let elm of list) {
+                    const style = {font: "20px Arial", fill: "#ff0000"};
+                    let line = this.game.add.text(x, y, "[" + i + "]", style);
+                    this.game.add.text(x + 40, y, elm.name, style);
+                    this.game.add.text(x + 300, y, elm.score + " pts", style);
 
-                y += line.height;
-                i++;
+                    y += line.height;
+                    i++;
+                }
             }
         })();
     }

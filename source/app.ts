@@ -6,20 +6,27 @@ import {Boot} from "./states/boot";
 import {Preload} from "./states/preload";
 import {Game} from "./states/game";
 import {End} from "./states/end";
+import {Session} from "./session";
+import {Boss} from "./states/boss";
 
 /**
  * Invaders game
  */
 class Invaders extends Phaser.Game {
     constructor(id: string) {
-        super(window.innerWidth, window.innerHeight, Phaser.AUTO, id);
+        super(window.innerWidth - 5, window.innerHeight - 5, Phaser.AUTO, id);
+
+        let session = new Session();
 
         this.state.add('boot', new Boot());
         this.state.add('preload', new Preload());
-        this.state.add('game', new Game());
-        this.state.add('end', new End());
+        this.state.add('game', new Game(session));
+        this.state.add('boss', new Boss(session));
+        this.state.add('end', new End(session));
 
         this.state.start('boot');
+
+        console.log("Invaders! 2017 (c) Rohdekill");
     }
 }
 

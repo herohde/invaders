@@ -1,3 +1,5 @@
+import {Image} from "../util/image"
+
 /*
  * Preload state
  *
@@ -5,9 +7,7 @@
  */
 export class Preload extends Phaser.State {
     preload() {
-        this.bg = this.add.sprite(0, 0, 'splash');
-        this.bg.width = this.game.width;
-        this.bg.height = this.game.height;
+        this.bg = Image.fill(this.game, 'splash');
 
         let text = this.game.add.text(this.game.width/2, this.game.height/2, "invaders", {font: "80px Arial", fill: "#ffffff", align: "center"});
         text.anchor.setTo(0.5, 0.5);
@@ -29,6 +29,8 @@ export class Preload extends Phaser.State {
         this.load.spritesheet("spaceship", "assets/images/spaceship.png", 32, 32, 2);
         this.load.spritesheet("mothership", "assets/images/mothership.png", 64, 32, 1);
         this.load.spritesheet("laser", "assets/images/laser.png", 4, 16, 1);
+        this.load.spritesheet("drop", "assets/images/drop.png", 4, 16, 1);
+        this.load.spritesheet("bomb", "assets/images/bomb.png", 16, 16, 1);
 
         // this.load.audio('lazer', [ "assets/sounds/lazer.mp3", "assets/sounds/lazer.m4a", "assets/sounds/lazer.ogg" ]);
         // this.load.audio('die', [ "assets/sounds/die.mp3", "assets/sounds/die.m4a", "assets/sounds/die.ogg" ]);

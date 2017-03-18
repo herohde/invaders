@@ -1,3 +1,4 @@
+import {Bullets} from "../util/bullets"
 
 /*
  * Invaders player
@@ -5,7 +6,7 @@
  * Human-controlled spaceship. Uses arrows and space bar.
  */
 export class Player extends Phaser.Sprite {
-    constructor(game: Phaser.Game, x :number, y:number, public bullets : Phaser.Group) {
+    constructor(game: Phaser.Game, x :number, y:number) {
         super(game, x, y, "spaceship");
 
         game.add.existing(this);
@@ -22,11 +23,7 @@ export class Player extends Phaser.Sprite {
         this.scale.x = 2;
         this.scale.y = 2;
 
-        // Shooting.
-        this.bullets.enableBody = true;
-        this.bullets.physicsBodyType = Phaser.Physics.ARCADE;
-
-        this.fireguard = 0;
+        this.bullets = new Bullets(game, "laser", {x: 45, y: 15}, {x: 0, y: -600});
 
         // this.health, heal, damage, ..
 
@@ -49,30 +46,17 @@ export class Player extends Phaser.Sprite {
         }
     }
 
-    fire() {
+    private fire() {
+        const delay = 400;
+
         if (this.game.time.now < this.fireguard) {
             return; // too soon to fire again
         }
-
-        this.fireguard = this.game.time.now + 400;
-
-        const offset = {x: 45, y: 15};
-
-
-        let bullet = this.bullets.getFirstDead();
-        if (bullet) {
-            bullet.x = this.x + offset.x;
-            bullet.y = this.y + offset.y;
-            bullet.revive();
-        } else {
-            bullet = this.bullets.create(this.x + offset.x, this.y + offset.y, "laser");
-            this.game.physics.enable(bullet, Phaser.Physics.ARCADE);
-            bullet.outOfBoundsKill = true;
-            bullet.checkWorldBounds = true;
-
-            bullet.body.velocity.y = -600;
-        }
+        this.fireguard = this.game.time.now + delay;
+        this.bullets.fire(this);
     }
+
+    public bullets: Bullets;
 
     private fireguard: number = 0;
     private cursors: Phaser.CursorKeys;

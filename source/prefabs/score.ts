@@ -1,36 +1,20 @@
+import {Counter} from "../util/counter";
+
 /*
  * Score
  *
- * Simple game score UI element.
+ * Simple game score UI element based on a counter.
  */
-export class Score extends Phaser.Group {
-    constructor(game: Phaser.Game, x: number, y: number) {
-        super(game);
-
+export class Score {
+    constructor(game: Phaser.Game, x: number, y: number, score: Counter) {
         const style = { font: "32px Arial", fill: "#fff" };
-        this.txt = new Phaser.Text(game, x, y, "", style);
-        this.add(this.txt);
+        this.txt = new Phaser.Text(game, x, y, score.value.toString(), style);
+        game.add.existing(this.txt);
 
-        this.reset();
-    }
-
-    inc(num : number) {
-        this._set(this.score + num);
-    }
-
-    reset() {
-        this._set(0);
-    }
-
-    get() : number {
-        return this.score;
-    }
-
-    private _set(score: number) {
-        this.score = score;
-        this.txt.setText(this.score.toString());
+        score.signal.add((n: number) => {
+            this.txt.setText(n.toString());
+        }, this);
     }
 
     private txt: Phaser.Text;
-    private score: number;
 }
