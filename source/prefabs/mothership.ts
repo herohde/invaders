@@ -15,7 +15,7 @@ export class Mothership extends Phaser.Sprite {
         this.scale.x = 2;
         this.scale.y = 2;
 
-        this.health = 3;
+        this.health = 5;
     }
 
     // TODO(herohde) 3/18/2017: use different sprite instead? Not

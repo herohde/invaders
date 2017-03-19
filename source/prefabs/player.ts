@@ -47,7 +47,7 @@ export class Player extends Phaser.Sprite {
     }
 
     private fire() {
-        const delay = 400;
+        const delay = 200;
 
         if (this.game.time.now < this.fireguard) {
             return; // too soon to fire again

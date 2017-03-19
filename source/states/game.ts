@@ -89,8 +89,8 @@ export class Game extends Phaser.State {
         this.ufos.enableBody = true;
 
         const spacing = 80;
-        for (let x = 0; x<12; x++) {
-            for (let y = 0; y<4; y++) {
+        for (let x = 0; x<10; x++) {
+            for (let y = 0; y<3; y++) {
                 let ufo = new Ufo(this.game, 20 + x*spacing, 20 + y*spacing);
                 this.ufos.add(ufo);
             }
@@ -121,7 +121,10 @@ export class Game extends Phaser.State {
 
         let index = Math.floor(this.ufos.total * Math.random());
         let alive = this.ufos.filter((ufo: Ufo) => { return ufo.alive; });
-        this.bullets.fire(alive.list[index]);
+
+        let bullet = this.bullets.fire(alive.list[index]);
+        bullet.scale.x = 2;
+        bullet.scale.y = 2;
 
         // console.log("Picked: " + index + " of " + alive.total);
     }
