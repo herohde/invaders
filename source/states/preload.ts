@@ -9,11 +9,14 @@ export class Preload extends Phaser.State {
     preload() {
         this.bg = Image.fill(this.game, 'splash');
 
-        let text = this.game.add.text(this.game.width/2, this.game.height/2, "invaders", {font: "80px Arial", fill: "#ffffff", align: "center"});
-        text.anchor.setTo(0.5, 0.5);
+        // let text = this.game.add.text(this.game.width/2, this.game.height/2, "invaders", {font: "80px Arial", fill: "#ffffff", align: "center"});
+        // text.anchor.setTo(0.5, 0.5);
+        
+        let img = this.add.image(this.game.width/2, this.game.height/2, "invaders");
+        img.anchor.setTo(0.5, 0.5);
 
         let style = {font: "36px Arial", fill: "#ffffff", align: "center"};
-        let credit = this.game.add.text(this.game.width, this.game.height, "2017 (c) William ", style);
+        let credit = this.game.add.text(this.game.width, this.game.height, "Invaders 2017 (c) William ", style);
         credit.anchor.setTo(1, 1);
 
         this.bar = this.add.sprite(this.game.width/2, this.game.height*3/4, 'preloader');
