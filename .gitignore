@@ -1,16 +1,11 @@
 *~
 .DS_Store
-source/.baseDir.ts
-source/.baseDir.js
-source/.baseDir.js.map
 
 # Folders
 .idea
-.tscache
+dist
 node_modules
-bower_components
 
-# Grunt-generated files
-scripts
+# Generated files
 source/**/*.js
 source/**/*.js.map

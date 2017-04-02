@@ -1,6 +1,5 @@
 import {Highscore} from "../server/highscore";
 import {Image} from "../util/image"
-import {Counter} from "../util/counter";
 import {Session} from "../session";
 
 /*
