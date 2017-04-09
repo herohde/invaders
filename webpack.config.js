@@ -17,6 +17,9 @@ var config = {
         new HtmlWebpackPlugin({ template: './index.html', inject: 'body' }),
         new webpack.NoEmitOnErrorsPlugin(),
     ],
+    resolve: {
+        extensions: ['.ts', '.js']
+    },
     module: {
         loaders: [
             { test: /\.ts(x?)$/, loader: 'ts-loader' },
@@ -26,6 +29,7 @@ var config = {
     node: {
        fs: 'empty'
     },
+
     externals: {
         'phaser': 'Phaser'
     },

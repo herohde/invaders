@@ -52,13 +52,20 @@ export class Player extends Phaser.Sprite {
         if (this.game.time.now < this.fireguard) {
             return; // too soon to fire again
         }
+
         this.fireguard = this.game.time.now + delay;
-        this.bullets.fire(this);
+        let bullet = this.bullets.fire(this);
+        if (this.side) {
+            // Fire with alternating weapon
+            bullet.x -= 26;
+        }
+        this.side = !this.side;
     }
 
     public bullets: Bullets;
 
     private fireguard: number = 0;
+    private side: boolean = false;
     private cursors: Phaser.CursorKeys;
     private spacebar: Phaser.Key;
 }
