@@ -21,6 +21,8 @@ export class End extends Phaser.State {
             this.game.state.start('game');
         }, this);
 
+        this.game.add.audio('game_over').play('', 0, 0.5);
+
         const style = { font: "64px Arial", fill: "#ffffff", align: "center" };
         let text = this.game.add.text(this.game.width/2, this.game.height/3, "Game over. You were awesome!", style);
         text.anchor.setTo(0.5, 0.5);

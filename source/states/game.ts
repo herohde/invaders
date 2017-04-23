@@ -28,6 +28,7 @@ export class Game extends Phaser.State {
         let score = new Score(this.game, 5, 5, this.session.score);
 
         console.log("level: " + this.session.level);
+        // this.game.add.audio('prepare_for_invasion').play('', 0, 0.5);
 
         const style = { font: "64px Arial", fill: "#ffffff", align: "center" };
         let text = this.game.add.text(this.game.width/2, this.game.height/3, "Level " + this.session.level, style);
@@ -121,6 +122,8 @@ export class Game extends Phaser.State {
 
         let index = Math.floor(this.ufos.total * Math.random());
         let alive = this.ufos.filter((ufo: Ufo) => { return ufo.alive; });
+
+        alive.list[index].firesound.play('', 0, 0.1);
 
         let bullet = this.bullets.fire(alive.list[index]);
         bullet.scale.x = 2;

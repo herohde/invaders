@@ -96,9 +96,10 @@ export class Boss extends Phaser.State {
     }
 
     private maybeShoot() {
-        this.ufos.forEachAlive((ufo : Phaser.Sprite) => {
+        this.ufos.forEachAlive((ufo : Mothership) => {
             if (Math.random() < this.fire) {
                 this.bullets.fire(ufo);
+                ufo.firesound.play('', 0, 0.1);
             }
         }, this);
     }

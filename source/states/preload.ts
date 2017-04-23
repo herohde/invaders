@@ -35,8 +35,15 @@ export class Preload extends Phaser.State {
         this.load.spritesheet("drop", "assets/images/drop.png", 4, 16, 1);
         this.load.spritesheet("bomb", "assets/images/bomb.png", 16, 16, 1);
 
-        // this.load.audio('lazer', [ "assets/sounds/lazer.mp3", "assets/sounds/lazer.m4a", "assets/sounds/lazer.ogg" ]);
-        // this.load.audio('die', [ "assets/sounds/die.mp3", "assets/sounds/die.m4a", "assets/sounds/die.ogg" ]);
+        this.load.audio('clank', [ "assets/sounds/clank.mp3", "assets/sounds/clank.ogg" ]);
+        this.load.audio('game_over', [ "assets/sounds/game_over.mp3", "assets/sounds/game_over.ogg" ]);
+        this.load.audio('large_explosion', [ "assets/sounds/large_explosion.mp3", "assets/sounds/large_explosion.ogg" ]);
+        this.load.audio('long_laser', [ "assets/sounds/long_laser.mp3", "assets/sounds/long_laser.ogg" ]);
+        this.load.audio('player_explosion', [ "assets/sounds/player_explosion.mp3", "assets/sounds/player_explosion.ogg" ]);
+        this.load.audio('player2_explosion', [ "assets/sounds/player2_explosion.mp3", "assets/sounds/player2_explosion.ogg" ]);
+        this.load.audio('prepare_for_invasion', [ "assets/sounds/prepare_for_invasion.mp3", "assets/sounds/prepare_for_invasion.ogg" ]);
+        this.load.audio('short_laser', [ "assets/sounds/short_laser.mp3", "assets/sounds/short_laser.ogg" ]);
+        this.load.audio('small_explosion', [ "assets/sounds/small_explosion.mp3", "assets/sounds/small_explosion.ogg" ]);
     }
 
     create() {

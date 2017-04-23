@@ -14,8 +14,10 @@ export class Ufo extends Phaser.Sprite {
         this.body.setSize(20, 12, 9, 10); // bounding box
         this.scale.x = 2;
         this.scale.y = 2;
-    }
 
+        this.diesound = game.add.audio('small_explosion');
+        this.firesound = game.add.audio('short_laser');
+    }
 
     // TODO(herohde) 3/18/2017: use different sprite instead? Not
     // sure what the canonical solution is. Disable body?
@@ -25,6 +27,7 @@ export class Ufo extends Phaser.Sprite {
             return false; // already dead
         }
         this.dying = true;
+        this.diesound.play('', 0, 0.2);
 
         this.body.velocity.y = -20;
         this.body.velocity.x *= 0.8;
@@ -37,5 +40,8 @@ export class Ufo extends Phaser.Sprite {
         return true;
     }
 
+    public firesound: Phaser.Sound;
+
+    private diesound: Phaser.Sound;
     private dying: boolean = false;
 }

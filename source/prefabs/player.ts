@@ -24,6 +24,7 @@ export class Player extends Phaser.Sprite {
         this.scale.y = 2;
 
         this.bullets = new Bullets(game, "laser", {x: 45, y: 15}, {x: 0, y: -600});
+        this.firesound = game.add.audio('short_laser');
 
         // this.health, heal, damage, ..
 
@@ -53,6 +54,8 @@ export class Player extends Phaser.Sprite {
             return; // too soon to fire again
         }
 
+        this.firesound.play('', 0, 0.2);
+
         this.fireguard = this.game.time.now + delay;
         let bullet = this.bullets.fire(this);
         if (this.side) {
@@ -63,6 +66,9 @@ export class Player extends Phaser.Sprite {
     }
 
     public bullets: Bullets;
+    public diesound: Phaser.Sound;
+
+    private firesound: Phaser.Sound;
 
     private fireguard: number = 0;
     private side: boolean = false;
