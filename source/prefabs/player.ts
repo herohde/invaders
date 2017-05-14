@@ -1,4 +1,6 @@
 import {Bullets} from "../util/bullets"
+import {Input3, Keyboard} from "../util/input";
+import {Gamepad3} from "./gamepad3";
 
 /*
  * Invaders player
@@ -29,20 +31,23 @@ export class Player extends Phaser.Sprite {
         // this.health, heal, damage, ..
 
         // Input.
-        this.cursors = game.input.keyboard.createCursorKeys();
-        this.spacebar = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+        if (!game.device.desktop) {
+            this.input3 = new Gamepad3(game);
+        } else {
+            this.input3 = new Keyboard(game);
+        }
     }
 
     update() {
         const speed = 300;
 
-        if (this.cursors.left.isDown) {
+        if (this.input3.left()) {
             this.body.velocity.x = -speed;
         }
-        if (this.cursors.right.isDown) {
+        if (this.input3.right()) {
             this.body.velocity.x = speed;
         }
-        if (this.spacebar.isDown) {
+        if (this.input3.a()) {
             this.fire();
         }
     }
@@ -72,6 +77,6 @@ export class Player extends Phaser.Sprite {
 
     private fireguard: number = 0;
     private side: boolean = false;
-    private cursors: Phaser.CursorKeys;
-    private spacebar: Phaser.Key;
+
+    private input3: Input3 = null;
 }

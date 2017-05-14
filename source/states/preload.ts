@@ -35,6 +35,8 @@ export class Preload extends Phaser.State {
         this.load.spritesheet("drop", "assets/images/drop.png", 4, 16, 1);
         this.load.spritesheet("bomb", "assets/images/bomb.png", 16, 16, 1);
 
+        this.load.spritesheet("gamepad3", "assets/images/gamepad3.png", 64, 64, 1);
+
         this.load.audio('clank', [ "assets/sounds/clank.mp3", "assets/sounds/clank.ogg" ]);
         this.load.audio('game_over', [ "assets/sounds/game_over.mp3", "assets/sounds/game_over.ogg" ]);
         this.load.audio('large_explosion', [ "assets/sounds/large_explosion.mp3", "assets/sounds/large_explosion.ogg" ]);
@@ -52,11 +54,11 @@ export class Preload extends Phaser.State {
             let style = {font: "36px Arial", fill: "#ff0000", align: "center"};
             let click = this.game.add.text(this.game.width/2, this.game.height*3/4, "- click to start -", style);
             click.anchor.setTo(0.5, 0.5);
-        }, this);
 
-        this.bg.inputEnabled = true;
-        this.bg.events.onInputDown.add(() => {
-            this.game.state.start('game');
+            this.bg.inputEnabled = true;
+            this.bg.events.onInputDown.add(() => {
+                this.game.state.start('game');
+            }, this);
         }, this);
     }
 

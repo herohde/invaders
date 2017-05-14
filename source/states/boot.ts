@@ -8,17 +8,17 @@ export class Boot extends Phaser.State {
         this.load.image('preloader', 'assets/images/loading_bar.png');
         this.load.image('splash', 'assets/images/rohdekill.png');
         this.load.image('invaders', 'assets/images/invaders.png');
-
     }
 
     create() {
-        this.game.input.maxPointers = 1;
+        // this.game.input.maxPointers = 1;
         this.stage.disableVisibilityChange = true;
         this.stage.smoothed = false;
 
-        /*
-        this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-        */
+        if (!this.game.device.desktop) {
+            // Use fullscreen mode on phones and tablets.
+           //  this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        }
 
         this.game.state.start('preload');
     }

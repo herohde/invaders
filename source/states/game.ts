@@ -2,7 +2,6 @@ import {Player} from "../prefabs/player"
 import {Ufo} from "../prefabs/ufo";
 import {Score} from "../prefabs/score";
 import {Image} from "../util/image"
-import {Counter} from "../util/counter";
 import {Session} from "../session";
 import {Bullets} from "../util/bullets";
 
@@ -39,7 +38,7 @@ export class Game extends Phaser.State {
 
 
         // Difficulty adjustments based on level.
-        this.speed = 100 + (50*this.session.level);
+        this.speed = (100 + (50*this.session.level)) * (this.game.width/2000);
         this.fire = 0.01 + (0.005*this.session.level);
 
         // Create grid of Ufos.
@@ -101,13 +100,13 @@ export class Game extends Phaser.State {
     }
 
     private moveUfos() {
-        if (this.ufos.left < 5) {
+        if (this.ufos.left < 2) {
             this.ufos.forEachAlive((ufo : Ufo) => {
                 ufo.y += 10;
             }, this);
             this.ufos.setAll('body.velocity.x', this.speed);
         }
-        if (this.ufos.right > this.game.width - 5) {
+        if (this.ufos.right > this.game.width - 2) {
             this.ufos.forEachAlive((ufo : Ufo) => {
                 ufo.y += 10;
             }, this);

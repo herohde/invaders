@@ -14,7 +14,7 @@ import {Boss} from "./states/boss";
  */
 class Invaders extends Phaser.Game {
     constructor(id: string) {
-        super(window.innerWidth - 5, window.innerHeight - 5, Phaser.AUTO, id);
+        super(window.innerWidth - 16, window.innerHeight - 16, Phaser.AUTO, id);
 
         let session = new Session();
         session.score.name = "William";
