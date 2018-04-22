@@ -19,5 +19,5 @@ their bullets.
    
 ## License
 
-The invaders source code is released under the MIT License.
+The invaders source code is released under the [MIT License](http://opensource.org/licenses/MIT).
 All rights are retained for the graphics and sounds.
