@@ -9,7 +9,7 @@ export class Gamepad3 implements Input3 {
     constructor(game: Phaser.Game) {
         let y = game.height - 70;
 
-        // TODO(herohde) 5/13/2017: bottons do not reliablely detect a finger
+        // TODO(herohde) 5/13/2017: buttons do not reliably detect a finger
         // that slides between buttons or if lifted (even with Over/Out). We
         // should instead look at "active" pointers directly.
 

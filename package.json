@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/herohde/invaders.git"
+    "url": "git+https://github.com/rohdekill/invaders.git"
   },
-  "author": "herohde",
-  "license": "",
+  "author": "Rohdekill",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/herohde/invaders/issues"
+    "url": "https://github.com/rohdekill/invaders/issues"
   },
-  "homepage": "https://github.com/herohde/invaders#readme",
+  "homepage": "https://github.com/rohdekill/invaders#readme",
   "devDependencies": {
     "@types/node": "^7.0.5",
     "@types/request": "0.0.40",
